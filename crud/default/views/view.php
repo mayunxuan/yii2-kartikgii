@@ -117,13 +117,18 @@ if (($tableSchema = $generator->getTableSchema()) === false) {
                 echo
 "            [
                     // must mysql config content field is not null
-                    'class'=>'\\yii\\redactor\\widgets\\Redactor',
-                    'clientOptions' => [
-                        'imageManagerJson' => ['/redactor/upload/image-json'],
-                        'imageUpload' => ['/redactor/upload/image'],
-                        'fileUpload' => ['/redactor/upload/file'],
-                        'lang' => 'zh_cn',
-                        'plugins' => ['clips', 'fontcolor','imagemanager']
+                    'attribute'=>'$column->name',
+                    'format' => 'raw',
+                    'type' => DetailView::INPUT_WIDGET,
+                    'widgetOptions' =>[
+                        'class'=>'\\yii\\redactor\\widgets\\Redactor',
+                        'clientOptions' => [
+                            'imageManagerJson' => ['/redactor/upload/image-json'],
+                            'imageUpload' => ['/redactor/upload/image'],
+                            'fileUpload' => ['/redactor/upload/file'],
+                            'lang' => 'zh_cn',
+                            'plugins' => ['clips', 'fontcolor','imagemanager']
+                        ]
                     ]
             ],\n";
             }else{
