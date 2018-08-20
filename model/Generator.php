@@ -46,6 +46,7 @@ class Generator extends \yii\gii\Generator
 
     public $uploadPregPart = 'image|images|img|picture|pic|thumb|thumbnail|cover|banner';
     public $urlPregPart = 'url|link';
+    public $mobilePregPart = 'mobile';
 
 
     /**
@@ -309,6 +310,7 @@ class Generator extends \yii\gii\Generator
         $lengths = [];
         $images =[];
         $urls =[];
+        $mobile = [];
         foreach ($table->columns as $column) {
             if ($column->autoIncrement) {
                 continue;
@@ -343,6 +345,8 @@ class Generator extends \yii\gii\Generator
                             $images[$column->size][] = $column->name;
                         }elseif(preg_match("/({$this->urlPregPart}$)/i",$column->name)){
                             $urls[$column->size][] = $column->name;
+                        }elseif(preg_match("/({$this->mobilePregPart}$)/i",$column->name)){
+                            $mobile[$column->size][] = $column->name;
                         }else{
                             $lengths[$column->size][] = $column->name;
                         }
@@ -370,6 +374,11 @@ class Generator extends \yii\gii\Generator
 
         foreach ($urls as $length => $columns) {
             $rules[] = "['" . implode("', '", $columns) . "','url', 'defaultScheme' => 'http']";
+            $rules[] = "[['" . implode("', '", $columns) . "'], 'string', 'max' => $length]";
+        }
+
+        foreach ($mobile as $length => $columns) {
+            $rules[] = "['" . implode("', '", $columns) . "','match','pattern'=>'/^1(3|4|5|7|8|9)\d{9}$/','message'=>'手机号码不可用']";
             $rules[] = "[['" . implode("', '", $columns) . "'], 'string', 'max' => $length]";
         }
 

@@ -51,7 +51,7 @@ if (($tableSchema = $generator->getTableSchema()) === false) {
 "            [
                 'attribute' => '$column->name',
                 'type' => DetailView::INPUT_DROPDOWN_LIST,
-                'items' => ['key1'=>1,'key2'=>2],
+                'items' => ['key1'=>'value1','key2'=>'value2'],
             ],\n";
         }elseif($column->type === 'integer' && preg_match("/(date)$/i",$column->name)){
             echo

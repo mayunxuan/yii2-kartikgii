@@ -280,7 +280,7 @@ class Generator extends \yii\gii\generators\crud\Generator
                 if(preg_match("/({$this->uploadPregPart})$/i",$column->name)){
                     return "'$attribute' => [
                 'type'=>Form::INPUT_WIDGET,
-                'widgetClass'=>'\\kartik\\widgets\\fileinput',
+                'widgetClass'=>'\\kartik\\widgets\\FileInput',
                 'options' => [
                     'pluginOptions'=>[
                         'showUpload' => false,
