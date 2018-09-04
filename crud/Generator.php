@@ -28,6 +28,7 @@ class Generator extends \yii\gii\generators\crud\Generator
     public $urlPregPart = 'url|link';
     public $textEditorPregPart = 'content';
     public $hiddenFiledOptions = ['created_at','updated_at'];
+    public $colorPregPart = 'color';
 
     /**
      * @inheritdoc
@@ -290,7 +291,12 @@ class Generator extends \yii\gii\generators\crud\Generator
             ],";
                 }elseif(preg_match("/(time)$/i", $column->name)){
                     return "'$attribute' => ['type' => Form::INPUT_WIDGET, 'widgetClass' => DateControl::className(),'options' => ['type' => DateControl::FORMAT_TIME]],";
-                }else{
+                }elseif (preg_match("/^({$this->colorPregPart})$/i", $column->name)){
+                    return "'$attribute'=>[
+                        'type' => Form::INPUT_WIDGET,
+                        'widgetClass' => '\\kartik\\widgets\\ColorInput'
+                    ]";
+                } else{
                     //return "\$form->field(\$model, '$attribute')->$input(['maxlength' => $column->size])";
                     return "'$attribute' => ['type' => Form::".$input.", 'options' => ['placeholder' => '".Yii::t('app', 'Enter').' '.$attributeLabels[$attribute]."...', 'maxlength' => ".$column->size."]],";
                 }

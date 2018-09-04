@@ -46,16 +46,16 @@ if (($tableSchema = $generator->getTableSchema()) === false) {
     foreach ($generator->getTableSchema()->columns as $column) {
 
         $format = $generator->generateColumnFormat($column);
-        if($column->type == 'smallint' || $column->phpType === 'boolean'){
+        if ($column->type == 'smallint' || $column->phpType === 'boolean') {
             echo
-"            [
+            "            [
                 'attribute' => '$column->name',
                 'type' => DetailView::INPUT_DROPDOWN_LIST,
-                'items' => ['key1'=>'value1','key2'=>'value2'],
+                'items' => ['key1'=>1,'key2'=>2],
             ],\n";
-        }elseif($column->type === 'integer' && preg_match("/(date)$/i",$column->name)){
+        } elseif ($column->type === 'integer' && preg_match("/(date)$/i", $column->name)) {
             echo
-"            [
+            "            [
                 'attribute' => '$column->name',
                 'format' => [
                     'date', (isset(Yii::\$app->modules['datecontrol']['displaySettings']['date']))
@@ -68,9 +68,9 @@ if (($tableSchema = $generator->getTableSchema()) === false) {
                     'type' => DateControl::FORMAT_DATE
                 ]
             ],\n";
-        }elseif ($column->type === 'integer' && preg_match("/(datetime)$/i",$column->name)){
+        } elseif ($column->type === 'integer' && preg_match("/(datetime)$/i", $column->name)) {
             echo
-"            [
+            "            [
                 'attribute' => '$column->name',
                 'format' => [
                     'date', (isset(Yii::\$app->modules['datecontrol']['displaySettings']['datetime']))
@@ -83,9 +83,9 @@ if (($tableSchema = $generator->getTableSchema()) === false) {
                     'type' => DateControl::FORMAT_DATE
                 ]
             ],\n";
-        }elseif ($column->type === 'char' && preg_match("/(time)$/i",$column->name)){
+        } elseif ($column->type === 'char' && preg_match("/(time)$/i", $column->name)) {
             echo
-"            [
+            "            [
                 'attribute' => '$column->name',
                 'format' => [
                     'date', (isset(Yii::\$app->modules['datecontrol']['displaySettings']['time']))
@@ -98,13 +98,24 @@ if (($tableSchema = $generator->getTableSchema()) === false) {
                     'type' => DateControl::FORMAT_DATE
                 ]
             ],\n";
-        }elseif(preg_match("/(image|images|img|picture|pic|thumb|thumbnail|cover|banner)$/i",$column->name)){
+        } elseif (preg_match("/(image|images|img|picture|pic|thumb|thumbnail|cover|banner)$/i", $column->name)) {
             echo
-"            [
+            "            [
                     'attribute'=>'$column->name',
                     'format'=>['image',['width'=>'200px']],
                     'value'=>(\$model->{$column->name})?Yii::getAlias('@frontendLocalhost').'/'.\$model->{$column->name}.'?v='.\$model->updated_at:'upload_files/noPic.gif',
                     'type'=>DetailView::INPUT_FILE
+            ],\n";
+        }elseif (preg_match("/^color$/i", $column->name)){
+            echo
+            "            [
+               'attribute' => '$column->name',
+               'type' => DetailView::INPUT_WIDGET,
+               'widgetOptions' => [
+                 'class' => '\\kartik\\widgets\\ColorInput',
+               ],
+               'format' =>'raw',
+               'value' => \"<div style='width: 20px;height: 20px;background-color:{\$model->{$column->name}};'></div>\"
             ],\n";
         }elseif(preg_match("/^(password|pass|passwd|passcode)$/i",$column->name)){
             echo
