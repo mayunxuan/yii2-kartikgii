@@ -3,7 +3,7 @@ Gii 生成器是基于 https://github.com/kartik-v
 可以根据字段的正则匹配来简化kartik的使用
 
 |匹配到的字段|使用的控件|模型中使用的rule|
-|--|--|
+|--|--|--|
 |image images img picture pic thumb thumbnail cover banner|kartik\widgets\FileInput|file|
 |url link|默认|url|
 |color|kartik\widgets\ColorInput|string|
@@ -86,6 +86,7 @@ public $filter = ['delete' => ['post']];
 如何使用?
 1.安装
 composer require mayunxuan/yii2-kartikgii
+
 2.配置
 common/main.php
 ```
