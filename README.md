@@ -87,6 +87,7 @@ public $filter = ['delete' => ['post']];
 
 如何使用?
 1.安装
+
 composer require mayunxuan/yii2-kartikgii
 
 2.配置
