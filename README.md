@@ -1,6 +1,7 @@
 # yii2-kartikgii
 Gii 生成器是基于 https://github.com/kartik-v
-可以根据字段的正则匹配来简化kartik的使用
+
+可以根据字段的正则匹配,轻松使用kartik
 
 |匹配到的字段|使用的控件|模型中使用的rule|
 |--|--|--|
