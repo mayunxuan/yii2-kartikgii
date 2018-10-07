@@ -15,10 +15,10 @@ Gii 生成器是基于 https://github.com/kartik-v
 
 其他作用如下:
 
- +默认每个表生成的模型自带场景.场景是被注释的,方便修改使用
- +模型中默认生成beforeSave方法.用来自动添加创建时间和更新时间.后面更新可能会用TimestampBehavior取代
- +modelSearch 中生成一些代码处理时间搜索
- +默认生成的控制器继承commonController类.这是为了方便用户登录验证以及权限认证.下面是demo
++ 默认每个表生成的模型自带场景.场景是被注释的,方便修改使用
++ 模型中默认生成beforeSave方法.用来自动添加创建时间和更新时间.后面更新可能会用TimestampBehavior取代
++ modelSearch 中生成一些代码处理时间搜索
++ 默认生成的控制器继承commonController类.这是为了方便用户登录验证以及权限认证.下面是demo
 ```
 <?php
 
