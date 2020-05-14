@@ -1,3 +1,5 @@
+# 由于工作原因,已经不维护这个代码了.如果有需要请访问这个项目 https://github.com/zhangyc310/yii2-kartikgii/
+
 # yii2-kartikgii
 Gii 生成器是基于 https://github.com/kartik-v
 
